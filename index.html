@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicación EPMURAS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .hidden {
+      display: none;
+    }
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    .image-container {
+      width: 100%;
+      height: 200px;
+      background-color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 0;
+    }
+    .evaluation {
+      width: 100%;
+      padding: 10px;
+    }
+    .evaluation div {
+      margin: 5px 0;
+    }
+    .bottom-menu {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: #f1f1f1;
+    }
+    .bottom-menu button {
+      flex: 1;
+    }
+    .bottom-menu .center-button {
+      flex: 0;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Pantalla de Carga -->
+  <div id="splashScreen" class="center">
+    <img src="logo.png" alt="Logo">
+  </div>
+
+  <!-- Pantalla de Inicio de Sesión/Registro -->
+  <div id="loginScreen" class="center hidden">
+    <input type="text" id="username" placeholder="Usuario">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="login()">Iniciar Sesión / Registrarse</button>
+  </div>
+
+  <!-- Menú Principal -->
+  <div id="mainMenu" class="center hidden">
+    <button onclick="navigate('epmurasScreen')">EPMURAS</button>
+    <button onclick="navigate('searchScreen')">Buscar</button>
+    <button onclick="navigate('rankingsScreen')">Rankings</button>
+  </div>
+
+  <!-- Pantalla EPMURAS -->
+  <div id="epmurasScreen" class="hidden">
+    <div class="center">
+      <div class="image-container" id="imageContainer">Imagen del animal</div>
+      <div class="evaluation">
+        <div>Estructura Corporal</div>
+        <div>Precocidad</div>
+        <div>Musculatura</div>
+        <div>Ombligo</div>
+        <div>Características Raciales</div>
+        <div>Piernas</div>
+        <div>Sexualidad</div>
+      </div>
+      <div>
+        <button onclick="loadImage()">Cargar</button>
+        <button onclick="takePhoto()">Cámara</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pantalla de Búsqueda -->
+  <div id="searchScreen" class="center hidden">
+    <h1>Buscar</h1>
+    <p>Aquí se mostrarán las imágenes evaluadas</p>
+  </div>
+
+  <!-- Pantalla de Rankings -->
+  <div id="rankingsScreen" class="center hidden">
+    <h1>Rankings</h1>
+    <p>Aquí se mostrarán los rankings de los animales evaluados</p>
+  </div>
+
+  <!-- Menú Inferior -->
+  <div class="bottom-menu">
+    <button onclick="goBack()">←</button>
+    <button class="center-button" onclick="addNew()">+</button>
+    <button onclick="navigate('mainMenu')">Inicio</button>
+  </div>
+
+  <script>
+    function showScreen(screenId) {
+      document.querySelectorAll('div').forEach(div => div.classList.add('hidden'));
+      document.getElementById(screenId).classList.remove('hidden');
+    }
+
+    function login() {
+      // Lógica para iniciar sesión o registrarse
+      showScreen('mainMenu');
+    }
+
+    function navigate(screenId) {
+      showScreen(screenId);
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    function addNew() {
+      // Lógica para agregar nuevo elemento
+    }
+
+    function loadImage() {
+      // Lógica para cargar imagen desde galería
+    }
+
+    function takePhoto() {
+      // Lógica para tomar foto con la cámara
+    }
+
+    // Mostrar pantalla de carga por 3 segundos y luego mostrar la pantalla de inicio de sesión
+    setTimeout(() => {
+      showScreen('loginScreen');
+    }, 3000);
+  </script>
+</body>
+</html>
